@@ -21,3 +21,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard','DashboardController')->name('dashboard');
+
+Route::get('{any?}', 'DashboardController')->where('any', '^(?!(api|xyz).*$).*');

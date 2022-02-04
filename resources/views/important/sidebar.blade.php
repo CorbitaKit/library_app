@@ -24,18 +24,18 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <router-link to="/dashboard" :class="[currentPage.includes('dashboard') ? 'active' : '', 'nav-link']">
                   <i class="fas fa-list nav-icon"></i>
                   <p>Dashboard</p>
-                </a>
+                </router-link>
               </li>
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <router-link to="/library" :class="[currentPage.includes('library') ? 'active' : '', 'nav-link']">
                 <i class="far fa-building nav-icon"></i>
                 <p>Library  List</p>
-            </a>
+            </router-link>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
