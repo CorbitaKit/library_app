@@ -1,20 +1,20 @@
 <template>
-
-     <div class="row">
+    <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Library Master List</h3>
+                    <h3 class="card-title">Users Master List</h3>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>Librarian</th>
-                                <th>Library Name</th>
+                                <th>Name</th>
                                 <th>Address</th>
-                                <th>Number Of Books</th>
+                                <th>Gender</th>
+                                <th>Email</th>
+                                <th>Role</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                         </thead>
@@ -29,6 +29,7 @@
                                 </td>
                                 <td><span class="badge bg-danger">55%</span></td>
                                 <td><span class="badge bg-danger">55%</span></td>
+                                <td><span class="badge bg-danger">55%</span></td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-success btn-sm">
@@ -36,9 +37,6 @@
                                         </button>
                                         <button type="button" class="btn btn-danger btn-sm">
                                              <i class="fas fa-trash nav-icon"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-primary btn-sm">
-                                             <i class="fas fa-eye nav-icon"></i>
                                         </button>
 
                                     </div>
@@ -55,10 +53,10 @@
 
 
 
+
 <script>
 
     export default{
-        name : 'library-list'
-    }
 
+    }
 </script>

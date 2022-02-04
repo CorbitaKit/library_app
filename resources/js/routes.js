@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import DashboardLayout from './components/dashboard/DashboardComponent.vue'
 import LibraryListLayout from './components/dashboard/library/LibraryListComponent.vue'
+import UserListLayout from './components/dashboard/user/UserListComponent.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -14,6 +15,10 @@ const routes = [
     {
         path : '/library',
         component : LibraryListLayout
+    },
+    {
+        path : '/user',
+        component : UserListLayout
     }
 
 
