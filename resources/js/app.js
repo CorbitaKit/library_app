@@ -1,17 +1,17 @@
 import router from './routes.js';
-import ElementUI from 'element-ui';
+
 import Vue from 'vue';
-
-
+import vSelect from 'vue-select'
+import "vue-select/src/scss/vue-select.scss";
 
 require('./bootstrap');
 
 window.Vue = require('vue');
-
+Vue.component('v-select', vSelect)
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.use(ElementUI);
+
 
 
 const app = new Vue({

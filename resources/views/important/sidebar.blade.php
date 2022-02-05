@@ -76,10 +76,10 @@
                 </router-link>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <router-link to="/add-book" :class="[currentPage.includes('add-book') ? 'active' : '', 'nav-link']">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add New Book</p>
-                </a>
+                </router-link>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">

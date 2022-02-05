@@ -1,11 +1,12 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router'
 
-import DashboardLayout from './components/dashboard/DashboardComponent.vue'
-import LibraryListLayout from './components/dashboard/library/LibraryListComponent.vue'
-import UserListLayout from './components/dashboard/user/UserListComponent.vue'
-import AddUserLayout from './components/dashboard/user/AddUserComponent.vue'
+import DashboardLayout from './components/dashboard/DashboardComponent'
+import LibraryListLayout from './components/dashboard/library/LibraryListComponent'
+import UserListLayout from './components/dashboard/user/UserListComponent'
+import AddUserLayout from './components/dashboard/user/AddUserComponent'
 import BookListLayout from './components/dashboard/book/BookListComponent'
+import AddBookLayout from './components/dashboard/book/AddBookComponent'
 Vue.use(VueRouter)
 
 const routes = [
@@ -30,6 +31,10 @@ const routes = [
     {
         path : '/book-list',
         component : BookListLayout
+    },
+    {
+        path : '/add-book',
+        component : AddBookLayout
     }
 
 
