@@ -38,7 +38,7 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" :class="[currentPage.includes('user') ? 'active' : '', 'nav-link']">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Users
@@ -61,7 +61,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" :class="[currentPage.includes('book') ? 'active' : '', 'nav-link']">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Books
@@ -81,12 +81,7 @@
                   <p>Add New Book</p>
                 </router-link>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>History</p>
-                </a>
-              </li>
+
 
             </ul>
         </ul>
