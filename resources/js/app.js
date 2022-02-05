@@ -1,4 +1,8 @@
 import router from './routes.js';
+import ElementUI from 'element-ui';
+import Vue from 'vue';
+
+
 
 require('./bootstrap');
 
@@ -7,6 +11,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
+Vue.use(ElementUI);
 
 
 const app = new Vue({

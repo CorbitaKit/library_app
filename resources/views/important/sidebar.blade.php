@@ -47,16 +47,16 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <router-link to="/user" :class="[currentPage.includes('user') ? 'active' : '', 'nav-link']">
+                <router-link to="/user-list" :class="[currentPage.includes('user-list') ? 'active' : '', 'nav-link']">
                   <i class="far fa-circle nav-icon"></i>
                   <p>User List</p>
                 </router-link>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <router-link to="/add-user" :class="[currentPage.includes('add-user') ? 'active' : '', 'nav-link']">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add  New User</p>
-                </a>
+                </router-link>
               </li>
             </ul>
           </li>
