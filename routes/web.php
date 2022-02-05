@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard','DashboardController')->name('dashboard');
+
+Route::get('{any?}', 'DashboardController')->where('any', '^(?!(api|xyz).*$).*');
