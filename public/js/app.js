@@ -2726,27 +2726,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       user: {
         name: '',
-        address: '',
-        gender: '',
         email: '',
         password: '',
         role: '',
@@ -2771,7 +2756,16 @@ __webpack_require__.r(__webpack_exports__);
     createNewUser: function createNewUser() {
       var _this2 = this;
 
-      axios.post('/api/create-new-user', this.user).then(function (response) {})["catch"](function (err) {
+      axios.post('/api/create-new-user', this.user).then(function (response) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+          title: 'Success!',
+          text: 'User created successfully!',
+          icon: 'success',
+          button: 'Okay!'
+        });
+
+        _this2.$router.push('/user-list');
+      })["catch"](function (err) {
         _this2.errors = err.response.data.errors;
         sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
           title: 'Error!',
@@ -43125,43 +43119,6 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group col-6" }, [
-                  _c("label", { attrs: { for: "exampleInputPassword1" } }, [
-                    _vm._v("Address"),
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.user.address,
-                        expression: "user.address",
-                      },
-                    ],
-                    class: [
-                      _vm.errors.address ? "is-invalid" : "",
-                      "form-control",
-                    ],
-                    attrs: { type: "text", placeholder: "Enter Address" },
-                    domProps: { value: _vm.user.address },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.user, "address", $event.target.value)
-                      },
-                    },
-                  }),
-                  _vm._v(" "),
-                  _vm.errors.address
-                    ? _c("span", [_vm._v(_vm._s(_vm.errors.address[0]))])
-                    : _vm._e(),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "form-group col-6" }, [
                   _c("label", { attrs: { for: "exampleInputEmail1" } }, [
                     _vm._v("Email"),
                   ]),
@@ -43195,7 +43152,9 @@ var render = function () {
                     ? _c("span", [_vm._v(_vm._s(_vm.errors.email[0]))])
                     : _vm._e(),
                 ]),
-                _vm._v(" "),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "form-group col-6" }, [
                   _c("label", { attrs: { for: "exampleInputPassword1" } }, [
                     _vm._v("Password"),
@@ -43228,64 +43187,6 @@ var render = function () {
                   _vm._v(" "),
                   _vm.errors.password
                     ? _c("span", [_vm._v(_vm._s(_vm.errors.password[0]))])
-                    : _vm._e(),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "form-group col-6" }, [
-                  _c("label", { attrs: { for: "exampleInputEmail1" } }, [
-                    _vm._v("Gender"),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.user.gender,
-                          expression: "user.gender",
-                        },
-                      ],
-                      class: [
-                        _vm.errors.gender ? "is-invalid" : "",
-                        "form-control",
-                      ],
-                      on: {
-                        change: function ($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function (o) {
-                              return o.selected
-                            })
-                            .map(function (o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.user,
-                            "gender",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        },
-                      },
-                    },
-                    [
-                      _c("option", { attrs: { value: "Male" } }, [
-                        _vm._v(" Male "),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "Female" } }, [
-                        _vm._v("Female"),
-                      ]),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _vm.errors.gender
-                    ? _c("span", [_vm._v(_vm._s(_vm.errors.gender[0]))])
                     : _vm._e(),
                 ]),
                 _vm._v(" "),
