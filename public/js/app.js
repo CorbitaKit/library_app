@@ -2789,6 +2789,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2837,15 +2839,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      users: []
+    };
+  },
+  mounted: function mounted() {
+    this.getUsers();
+  },
+  methods: {
+    getUsers: function getUsers() {
+      var _this = this;
+
+      axios.get('/api/get-users').then(function (response) {
+        _this.users = response.data;
+      });
+    },
+    removeUser: function removeUser(user_id) {
+      var _this2 = this;
+
+      sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+        title: 'Are you sure',
+        text: "You want to delete this user?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios["delete"]('/api/delete-user/' + user_id).then(function (response) {
+            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire('Deleted!', 'Your file has been deleted.', 'success');
+          });
+
+          _this2.getUsers();
+        }
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -43387,103 +43421,92 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _c("h3", { staticClass: "card-title" }, [
-              _vm._v("Users Master List"),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c("table", { staticClass: "table table-bordered" }, [
-              _c("thead", [
-                _c("tr", [
-                  _c("th", { staticStyle: { width: "10px" } }, [_vm._v("#")]),
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "card" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("table", { staticClass: "table table-bordered" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.users, function (user, i) {
+                return _c("tr", { key: i }, [
+                  _c("td", [_vm._v(_vm._s(user.id))]),
                   _vm._v(" "),
-                  _c("th", [_vm._v("Name")]),
+                  _c("td", [_vm._v(_vm._s(user.name))]),
                   _vm._v(" "),
-                  _c("th", [_vm._v("Address")]),
+                  _c("td", [_vm._v(" " + _vm._s(user.email))]),
                   _vm._v(" "),
-                  _c("th", [_vm._v("Gender")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Email")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Role")]),
-                  _vm._v(" "),
-                  _c("th", { staticClass: "text-center" }, [_vm._v("Actions")]),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("tbody", [
-                _c("tr", [
-                  _c("td", [_vm._v("1.")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Update software")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("div", { staticClass: "progress progress-xs" }, [
-                      _c("div", {
-                        staticClass: "progress-bar progress-bar-danger",
-                        staticStyle: { width: "55%" },
-                      }),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("span", { staticClass: "badge bg-danger" }, [
-                      _vm._v("55%"),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("span", { staticClass: "badge bg-danger" }, [
-                      _vm._v("55%"),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("span", { staticClass: "badge bg-danger" }, [
-                      _vm._v("55%"),
-                    ]),
-                  ]),
+                  _c("td", [_vm._v(_vm._s(user.role.name))]),
                   _vm._v(" "),
                   _c("td", { staticClass: "text-center" }, [
                     _c("div", { staticClass: "btn-group" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success btn-sm",
-                          attrs: { type: "button" },
-                        },
-                        [_c("i", { staticClass: "fas fa-edit nav-icon" })]
-                      ),
+                      _vm._m(2, true),
                       _vm._v(" "),
                       _c(
                         "button",
                         {
                           staticClass: "btn btn-danger btn-sm",
                           attrs: { type: "button" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.removeUser(user.id)
+                            },
+                          },
                         },
                         [_c("i", { staticClass: "fas fa-trash nav-icon" })]
                       ),
                     ]),
                   ]),
-                ]),
-              ]),
-            ]),
+                ])
+              }),
+              0
+            ),
           ]),
         ]),
       ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Users Master List")]),
     ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticStyle: { width: "10px" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Role")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Actions")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn btn-success btn-sm", attrs: { type: "button" } },
+      [_c("i", { staticClass: "fas fa-edit nav-icon" })]
+    )
   },
 ]
 render._withStripped = true

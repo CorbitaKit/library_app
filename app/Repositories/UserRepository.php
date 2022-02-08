@@ -4,8 +4,9 @@
     use App\User;
     use Illuminate\Support\Facades\DB;
     use App\Helpers\UserHelper;
-    use App\Events\LibraryProcess;
-class UserRepository{
+
+    use App\Interfaces\UserInterface;
+class UserRepository implements UserInterface{
 
         // Initialize global data for userRepository class
 
@@ -17,32 +18,27 @@ class UserRepository{
         }
 
 
-        public function create($data){
+        public function model(){
+            return new User;
+        }
+
+        public function createUser($data){
+
+            //Transform raw data from front-end into object to save into user table
+            $new_user = $this->help->transformToObject($data,new User);
+
+            $new_user->save();
 
 
-            //Create database transaction for multiple database table entry
-            try{
-
-
-                DB::beginTransaction();
-
-                //Transform raw data from front-end into object to save into user table
-                $new_user = $this->help->transformToObject($data,new User);
-
-                $new_user->save();
-
-                if($data->role == 3){
-                    event(new LibraryProcess($data,$new_user->id));
-                }
-                DB::commit();
-            }
-            catch(\Exception $e){
-                dd($e);
-                DB::rollback();
-            }
 
 
         }
+
+
+
+
+
+
     }
 
 ?>

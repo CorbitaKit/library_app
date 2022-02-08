@@ -21,4 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/get-roles','RoleController');
 
+//User Routes
 Route::post('/create-new-user','UserController@create');
+Route::get('/get-users','UserController@getUsers');
+Route::delete('/delete-user/{user_id}','UserController@delete');

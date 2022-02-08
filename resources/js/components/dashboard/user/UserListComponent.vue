@@ -11,31 +11,23 @@
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>Name</th>
-                                <th>Address</th>
-                                <th>Gender</th>
                                 <th>Email</th>
                                 <th>Role</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1.</td>
-                                <td>Update software</td>
-                                <td>
-                                    <div class="progress progress-xs">
-                                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-danger">55%</span></td>
-                                <td><span class="badge bg-danger">55%</span></td>
-                                <td><span class="badge bg-danger">55%</span></td>
+                            <tr v-for="(user,i) in users" :key="i">
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.name}}</td>
+                                <td> {{ user.email }}</td>
+                                <td>{{ user.role.name }}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-success btn-sm">
                                             <i class="fas fa-edit nav-icon"></i>
                                         </button>
-                                        <button type="button" class="btn btn-danger btn-sm">
+                                        <button type="button" class="btn btn-danger btn-sm" @click="removeUser(user.id)">
                                              <i class="fas fa-trash nav-icon"></i>
                                         </button>
 
@@ -55,8 +47,50 @@
 
 
 <script>
-
+    import Swal from 'sweetalert2';
     export default{
+        data(){
+            return {
+                users : [],
+            }
+        },
 
+        mounted(){
+            this.getUsers()
+        },
+        methods : {
+            getUsers(){
+
+                axios.get('/api/get-users')
+                .then(response=>{
+                    this.users = response.data
+                })
+            },
+
+            removeUser(user_id){
+                Swal.fire({
+                    title: 'Are you sure',
+                    text: "You want to delete this user?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        axios.delete('/api/delete-user/'+user_id)
+                        .then(response=>{
+                            Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                            )
+                        })
+                        this.getUsers()
+                    }
+                })
+            }
+        }
     }
 </script>
