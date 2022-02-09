@@ -2415,6 +2415,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2484,10 +2486,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      book: {
+        title: '',
+        author: '',
+        isbn: '',
+        volume: null,
+        genre: '',
+        libraries: []
+      },
+      libraries: [],
+      errors: []
+    };
+  },
+  created: function created() {
+    this.getLibraries();
+  },
+  methods: {
+    getLibraries: function getLibraries() {
+      var _this = this;
+
+      axios.get('/api/get-libraries').then(function (response) {
+        _this.libraries = response.data;
+      });
+    },
+    addBook: function addBook() {
+      var _this2 = this;
+
+      axios.post('/api/create-book', this.book).then(function (response) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+          title: 'Success!',
+          text: 'User created successfully!',
+          icon: 'success',
+          button: 'Okay!'
+        });
+
+        _this2.$router.push('/book-list');
+      })["catch"](function (err) {
+        _this2.errors = err.response.data.errors;
+      });
+    }
   }
 });
 
@@ -42711,13 +42752,167 @@ var render = function () {
           _vm._v(" "),
           _c("form", [
             _c("div", { staticClass: "card-body" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _vm._m(2),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "form-group col-6" }, [
+                  _c("label", { attrs: { for: "exampleInputEmail1" } }, [
+                    _vm._v("Book Title"),
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.book.title,
+                        expression: "book.title",
+                      },
+                    ],
+                    class: [
+                      _vm.errors.title ? "is-invalid" : "",
+                      "form-control",
+                    ],
+                    attrs: {
+                      type: "text",
+                      id: "exampleInputEmail1",
+                      placeholder: "Enter Book Title",
+                    },
+                    domProps: { value: _vm.book.title },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.book, "title", $event.target.value)
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.title
+                    ? _c("span", [_vm._v(_vm._s(_vm.errors.title[0]))])
+                    : _vm._e(),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group col-6" }, [
+                  _c("label", { attrs: { for: "exampleInputPassword1" } }, [
+                    _vm._v("Author"),
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.book.author,
+                        expression: "book.author",
+                      },
+                    ],
+                    class: [
+                      _vm.errors.author ? "is-invalid" : "",
+                      "form-control",
+                    ],
+                    attrs: {
+                      type: "text",
+                      id: "exampleInputPassword1",
+                      placeholder: "Enter Book Author",
+                    },
+                    domProps: { value: _vm.book.author },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.book, "author", $event.target.value)
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.author
+                    ? _c("span", [_vm._v(_vm._s(_vm.errors.author[0]))])
+                    : _vm._e(),
+                ]),
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
-                _vm._m(3),
+                _c("div", { staticClass: "form-group col-6" }, [
+                  _c("label", { attrs: { for: "exampleInputEmail1" } }, [
+                    _vm._v("ISBN"),
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.book.isbn,
+                        expression: "book.isbn",
+                      },
+                    ],
+                    class: [
+                      _vm.errors.isbn ? "is-invalid" : "",
+                      "form-control",
+                    ],
+                    attrs: {
+                      type: "text",
+                      id: "exampleInputEmail1",
+                      placeholder: "Enter ISBN",
+                    },
+                    domProps: { value: _vm.book.isbn },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.book, "isbn", $event.target.value)
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.isbn
+                    ? _c("span", [_vm._v(_vm._s(_vm.errors.isbn[0]))])
+                    : _vm._e(),
+                ]),
                 _vm._v(" "),
+                _c("div", { staticClass: "form-group col-6" }, [
+                  _c("label", { attrs: { for: "exampleInputPassword1" } }, [
+                    _vm._v("Volume"),
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.book.volume,
+                        expression: "book.volume",
+                      },
+                    ],
+                    class: [
+                      _vm.errors.volume ? "is-invalid" : "",
+                      "form-control",
+                    ],
+                    attrs: {
+                      type: "text",
+                      id: "exampleInputPassword1",
+                      placeholder: "Enter Volume",
+                    },
+                    domProps: { value: _vm.book.volume },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.book, "volume", $event.target.value)
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.volume
+                    ? _c("span", [_vm._v(_vm._s(_vm.errors.volume[0]))])
+                    : _vm._e(),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
                 _c(
                   "div",
                   { staticClass: "form-group col-6" },
@@ -42727,11 +42922,20 @@ var render = function () {
                     ]),
                     _vm._v(" "),
                     _c("v-select", {
-                      attrs: {
-                        options: ["Canada", "United States"],
-                        multiple: "",
+                      class: [_vm.errors.title ? "is-invalid" : ""],
+                      attrs: { options: _vm.libraries, multiple: "" },
+                      model: {
+                        value: _vm.book.libraries,
+                        callback: function ($$v) {
+                          _vm.$set(_vm.book, "libraries", $$v)
+                        },
+                        expression: "book.libraries",
                       },
                     }),
+                    _vm._v(" "),
+                    _vm.errors.libraries
+                      ? _c("span", [_vm._v(_vm._s(_vm.errors.libraries[0]))])
+                      : _vm._e(),
                   ],
                   1
                 ),
@@ -42749,6 +42953,7 @@ var render = function () {
                       {
                         staticClass: "btn btn-success",
                         attrs: { type: "button" },
+                        on: { click: _vm.addBook },
                       },
                       [_vm._v("Submit")]
                     ),
@@ -42783,90 +42988,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h3", { staticClass: "card-title" }, [_vm._v("Book Information")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "form-group col-6" }, [
-        _c("label", { attrs: { for: "exampleInputEmail1" } }, [
-          _vm._v("Book Title"),
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            id: "exampleInputEmail1",
-            placeholder: "Enter Book Title",
-          },
-        }),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-6" }, [
-        _c("label", { attrs: { for: "exampleInputPassword1" } }, [
-          _vm._v("Author"),
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            id: "exampleInputPassword1",
-            placeholder: "Enter Book Author",
-          },
-        }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "form-group col-6" }, [
-        _c("label", { attrs: { for: "exampleInputEmail1" } }, [_vm._v("ISBN")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            id: "exampleInputEmail1",
-            placeholder: "Enter ISBN",
-          },
-        }),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-6" }, [
-        _c("label", { attrs: { for: "exampleInputPassword1" } }, [
-          _vm._v("Volume"),
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            id: "exampleInputPassword1",
-            placeholder: "Enter Volume",
-          },
-        }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-6" }, [
-      _c("label", { attrs: { for: "exampleInputEmail1" } }, [_vm._v("Genre")]),
-      _vm._v(" "),
-      _c("select", { staticClass: "form-control" }, [
-        _c("option", { attrs: { value: "Romance" } }, [_vm._v(" Romance ")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "Sci-fi" } }, [_vm._v("Sci-fi")]),
-      ]),
     ])
   },
 ]

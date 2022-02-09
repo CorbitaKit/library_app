@@ -27,3 +27,12 @@ Route::get('/get-users','UserController@getUsers');
 Route::delete('/delete-user/{user_id}','UserController@delete');
 Route::get('/get-user/{user_id}','UserController@getUser');
 Route::put('/update-user/{user_id}','UserController@update');
+
+
+//Library Routes
+
+Route::get('/get-libraries','LibraryController@getLibraries');
+
+//Book  Routes
+
+Route::post('/create-book','BookController@create');

@@ -8,6 +8,8 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 use App\Events\LibraryProcess;
 use App\Listeners\LibraryCreation;
+use App\Events\LibraryBookProcess;
+use App\Listeners\LibraryBookCreation;
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -19,6 +21,7 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
     ];
 
     /**
@@ -30,7 +33,12 @@ class EventServiceProvider extends ServiceProvider
     {
         Event::listen(
             LibraryProcess::class,
-            [LibraryCreation::class, 'handle']
+            [LibraryCreation::class, 'handle'],
+
+            LibraryBookProcess::class,
+            [LibraryBookCreation::class, 'handle']
         );
+
+
     }
 }
