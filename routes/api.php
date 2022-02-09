@@ -36,3 +36,5 @@ Route::get('/get-libraries','LibraryController@getLibraries');
 //Book  Routes
 
 Route::post('/create-book','BookController@create');
+Route::get('/get-books','BookController@getBooks');
+Route::get('/get-book/{book_id}','BookController@getBook');

@@ -19,4 +19,12 @@ class BookController extends Controller
 
         return response("Created",201);
     }
+
+    public function getBooks(){
+        return response(json_encode($this->bookService->getBooks()),200);
+    }
+
+    public function getBook($book_id){
+        return response(json_encode($this->bookService->getBook($book_id)),200);
+    }
 }

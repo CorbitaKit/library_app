@@ -16,4 +16,15 @@ class BookService extends BookRepository{
 
             return $new_book_id;
         }
+
+        public function getBooks() : object{
+            return $this->model()->get();
+        }
+
+        public function getBook(int $book_id) : object{
+            $book = $this->model()->with('library')->where('id',$book_id)->first();
+
+
+            return $book;
+        }
     }

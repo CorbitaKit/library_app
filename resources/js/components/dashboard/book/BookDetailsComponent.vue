@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Book Master List</h3>
+                    <h3 class="card-title">Book Details</h3>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
@@ -16,16 +16,26 @@
                                 <th>Volume</th>
 
 
+                                <th class="text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(book, i) in books" :key="i">
+                            <tr>
                                 <td>{{ book.isbn}}</td>
                                 <td>{{ book.title }}</td>
                                 <td> {{ book.author }} </td>
                                 <td>{{ book.volume }}</td>
 
 
+                                <td class="text-center">
+                                    <div class="btn-group">
+
+                                        <button type="button" class="btn btn-primary btn-sm">
+                                             Borrow
+                                        </button>
+
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -35,34 +45,29 @@
      </div>
 
 </template>
-
-
-
 <script>
-
     export default{
-        name : 'book-list',
+        props : ['book_id'],
 
         data(){
-            return{
-                books : []
+            return {
+                book : []
             }
         },
 
         created(){
-            this.getBooks()
+            this.getBook()
         },
 
         methods : {
-            getBooks(){
-                axios.get('/api/get-books')
+            getBook(){
+                axios.get('/api/get-book/'+this.book_id)
                 .then(response=>{
-                    this.books = response.data
+                    this.book = response.data
                 })
-            },
-
-
+            }
         }
-    }
 
+
+    }
 </script>
