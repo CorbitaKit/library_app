@@ -24,7 +24,7 @@
                                 <td>{{ user.role.name }}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-success btn-sm">
+                                        <button type="button" class="btn btn-success btn-sm" @click="$router.push('/add-user/'+user.id)">
                                             <i class="fas fa-edit nav-icon"></i>
                                         </button>
                                         <button type="button" class="btn btn-danger btn-sm" @click="removeUser(user.id)">
@@ -90,7 +90,10 @@
                         this.getUsers()
                     }
                 })
-            }
+            },
+
+
+
         }
     }
 </script>

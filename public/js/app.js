@@ -2726,6 +2726,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2742,8 +2743,13 @@ __webpack_require__.r(__webpack_exports__);
       errors: []
     };
   },
+  props: ['user_id'],
   created: function created() {
     this.getRoles();
+
+    if (this.user_id) {
+      this.getUser();
+    }
   },
   methods: {
     getRoles: function getRoles() {
@@ -2773,6 +2779,27 @@ __webpack_require__.r(__webpack_exports__);
           icon: 'error',
           confirmButtonText: 'Okay!'
         });
+      });
+    },
+    getUser: function getUser() {
+      var _this3 = this;
+
+      axios.get('/api/get-user/' + this.user_id).then(function (response) {
+        _this3.user = response.data;
+      });
+    },
+    updateUser: function updateUser() {
+      var _this4 = this;
+
+      axios.put('/api/update-user/' + this.user_id, this.user).then(function (response) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+          title: 'Success!',
+          text: 'User created successfully!',
+          icon: 'success',
+          button: 'Okay!'
+        });
+
+        _this4.$router.push('/user-list');
       });
     }
   }
@@ -43357,15 +43384,25 @@ var render = function () {
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-2" }, [
                   _c("div", { staticClass: "button-group pull-right" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success",
-                        attrs: { type: "button" },
-                        on: { click: _vm.createNewUser },
-                      },
-                      [_vm._v("Submit")]
-                    ),
+                    !_vm.user_id
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success",
+                            attrs: { type: "button" },
+                            on: { click: _vm.createNewUser },
+                          },
+                          [_vm._v("Submit")]
+                        )
+                      : _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success",
+                            attrs: { type: "button" },
+                            on: { click: _vm.updateUser },
+                          },
+                          [_vm._v("Update")]
+                        ),
                     _vm._v(" "),
                     _c(
                       "button",
@@ -43444,7 +43481,19 @@ var render = function () {
                   _vm._v(" "),
                   _c("td", { staticClass: "text-center" }, [
                     _c("div", { staticClass: "btn-group" }, [
-                      _vm._m(2, true),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success btn-sm",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.$router.push("/add-user/" + user.id)
+                            },
+                          },
+                        },
+                        [_c("i", { staticClass: "fas fa-edit nav-icon" })]
+                      ),
                       _vm._v(" "),
                       _c(
                         "button",
@@ -43497,16 +43546,6 @@ var staticRenderFns = [
         _c("th", { staticClass: "text-center" }, [_vm._v("Actions")]),
       ]),
     ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      { staticClass: "btn btn-success btn-sm", attrs: { type: "button" } },
-      [_c("i", { staticClass: "fas fa-edit nav-icon" })]
-    )
   },
 ]
 render._withStripped = true
@@ -59607,11 +59646,12 @@ var routes = [{
   path: '/library',
   component: _components_dashboard_library_LibraryListComponent__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
-  path: '/user-list',
+  path: '/user-list/',
   component: _components_dashboard_user_UserListComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
-  path: '/add-user',
-  component: _components_dashboard_user_AddUserComponent__WEBPACK_IMPORTED_MODULE_5__["default"]
+  path: '/add-user/:user_id?',
+  component: _components_dashboard_user_AddUserComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
+  props: true
 }, {
   path: '/book-list',
   component: _components_dashboard_book_BookListComponent__WEBPACK_IMPORTED_MODULE_6__["default"]

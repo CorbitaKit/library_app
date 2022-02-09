@@ -20,12 +20,13 @@ const routes = [
         component : LibraryListLayout
     },
     {
-        path : '/user-list',
+        path : '/user-list/',
         component : UserListLayout
     },
     {
-        path : '/add-user',
-        component : AddUserLayout
+        path : '/add-user/:user_id?',
+        component : AddUserLayout,
+        props : true
 
     },
     {

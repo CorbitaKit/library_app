@@ -40,4 +40,8 @@ class UserController extends Controller
 
         return response('Deleted',200);
     }
+
+    public function update(UserRequest $request, $user_id){
+        $this->userService->update($request,$user_id);
+    }
 }

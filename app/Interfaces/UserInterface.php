@@ -9,6 +9,7 @@
 
         public function createUser($data);
 
+        public function updateUser($data,$user);
 
 
     }

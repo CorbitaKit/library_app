@@ -32,4 +32,12 @@
             $this->model()->findOrFail($id)->delete();
         }
 
+        public function update($data,$user_id){
+
+            $user = $this->model()->findOrFail($user_id);
+
+
+            $this->updateUser($data,$user);
+        }
+
     }

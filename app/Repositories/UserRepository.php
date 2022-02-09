@@ -34,6 +34,11 @@ class UserRepository implements UserInterface{
 
         }
 
+        public function updateUser($data,$user){
+
+            $user->update($this->help->transformToArray($data));
+        }
+
 
 
 

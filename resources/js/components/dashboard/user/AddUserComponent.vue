@@ -59,7 +59,8 @@
                                <div class="col-md-10"></div>
                                <div class="col-md-2">
                                     <div class="button-group pull-right">
-                                        <button type="button" class="btn btn-success" @click="createNewUser">Submit</button>
+                                        <button type="button" class="btn btn-success" v-if="! user_id" @click="createNewUser">Submit</button>
+                                        <button type="button" class="btn btn-success" v-else  @click="updateUser">Update</button>
                                         <button type="button" class="btn btn-danger" @click="$router.back(-1)">Cancel</button>
                                     </div>
                                </div>
@@ -96,8 +97,14 @@
             }
         },
 
+        props : ['user_id'],
+
         created(){
             this.getRoles()
+
+            if(this.user_id){
+                this.getUser()
+            }
         },
 
         methods : {
@@ -132,6 +139,27 @@
 
 
 
+                })
+            },
+
+            getUser(){
+                axios.get('/api/get-user/'+this.user_id)
+                .then(response=>{
+                    this.user = response.data
+                })
+            },
+
+            updateUser(){
+                axios.put('/api/update-user/'+this.user_id,this.user)
+                .then(response=>{
+                    Swal.fire({
+                        title : 'Success!',
+                        text : 'User created successfully!',
+                        icon : 'success',
+                        button : 'Okay!'
+                    })
+
+                    this.$router.push('/user-list')
                 })
             }
         }

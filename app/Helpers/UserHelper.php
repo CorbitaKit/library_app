@@ -15,4 +15,13 @@
 
             return $new_user;
         }
+
+        public function transformToArray($data){
+            return [
+                "name" => $data->name,
+                "email" => $data->email,
+                "password" => Hash::make($data->password),
+                "role_id" => $data->role
+            ];
+        }
     }

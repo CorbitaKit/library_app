@@ -25,3 +25,5 @@ Route::get('/get-roles','RoleController');
 Route::post('/create-new-user','UserController@create');
 Route::get('/get-users','UserController@getUsers');
 Route::delete('/delete-user/{user_id}','UserController@delete');
+Route::get('/get-user/{user_id}','UserController@getUser');
+Route::put('/update-user/{user_id}','UserController@update');
