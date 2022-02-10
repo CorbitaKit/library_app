@@ -6,5 +6,7 @@
 
         public function model() : object;
 
+        public function doBorrowBook(object $data) : void;
 
+        public function doReturnBook(object $data) : void;
     }

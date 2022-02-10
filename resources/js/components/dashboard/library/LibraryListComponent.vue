@@ -11,34 +11,24 @@
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>Librarian</th>
+
                                 <th>Library Name</th>
                                 <th>Address</th>
-                                <th>Number Of Books</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1.</td>
-                                <td>Update software</td>
-                                <td>
-                                    <div class="progress progress-xs">
-                                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-danger">55%</span></td>
-                                <td><span class="badge bg-danger">55%</span></td>
+                            <tr v-for="(library,i) in libraries" :key="i">
+                                <td>{{ library.id }}</td>
+
+                                <td>{{ library.name}}</td>
+                                <td>{{ library.address}}</td>
+
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-success btn-sm">
-                                            <i class="fas fa-edit nav-icon"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger btn-sm">
-                                             <i class="fas fa-trash nav-icon"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-primary btn-sm">
-                                             <i class="fas fa-eye nav-icon"></i>
+
+                                        <button type="button" class="btn btn-primary btn-sm" @click="$router.push('/library-books/'+library.id)">
+                                             View Books
                                         </button>
 
                                     </div>
@@ -58,7 +48,28 @@
 <script>
 
     export default{
-        name : 'library-list'
+        name : 'library-list',
+
+        data(){
+            return {
+                libraries :[],
+            }
+        },
+
+        created(){
+            this.getLibraries()
+        },
+
+        methods : {
+            getLibraries(){
+                axios.get('/api/get-library-list')
+                .then(response=>{
+                    this.libraries = response.data
+
+                    console.log(response.data)
+                })
+            }
+        }
     }
 
 </script>

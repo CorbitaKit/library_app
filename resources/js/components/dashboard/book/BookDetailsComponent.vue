@@ -47,7 +47,7 @@
 </template>
 <script>
     export default{
-        props : ['book_id'],
+        props : ['library_id'],
 
         data(){
             return {
@@ -61,7 +61,7 @@
 
         methods : {
             getBook(){
-                axios.get('/api/get-book/'+this.book_id)
+                axios.get('/api/get-library-book/'+this.library_id)
                 .then(response=>{
                     this.book = response.data
                 })

@@ -12,7 +12,7 @@ class LibraryTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 1; $i <= 10; $i++){
+        for($i = 1; $i <= 5; $i++){
             DB::table('libraries')->insert([
                 "name" => "Library ".$i,
                 "address" => "Address ".$i

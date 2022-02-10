@@ -35,6 +35,7 @@ class LibraryBookProcess
 
             $this->libraryBook->library_id = $library['value'];
             $this->libraryBook->book_id = $this->book_id;
+            $this->libraryBook->is_borrowed = 0;
             $this->libraryBook->save();
         }
 

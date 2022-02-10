@@ -8,6 +8,7 @@ import AddUserLayout from './components/dashboard/user/AddUserComponent'
 import BookListLayout from './components/dashboard/book/BookListComponent'
 import AddBookLayout from './components/dashboard/book/AddBookComponent'
 import BookDetailsLayout from './components/dashboard/book/BookDetailsComponent'
+import LibraryBooksLayout from './components/dashboard/library/LibraryBooksComponent'
 Vue.use(VueRouter)
 
 const routes = [
@@ -41,6 +42,11 @@ const routes = [
     {
         path : '/book-details/:book_id',
         component : BookDetailsLayout,
+        props : true
+    },
+    {
+        path : '/library-books/:library_id',
+        component : LibraryBooksLayout,
         props : true
     }
 

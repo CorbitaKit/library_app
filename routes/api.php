@@ -32,7 +32,10 @@ Route::put('/update-user/{user_id}','UserController@update');
 //Library Routes
 
 Route::get('/get-libraries','LibraryController@getLibraries');
-
+Route::get('/get-library-list','LibraryController@getLibraryList');
+Route::get('/get-library-books/{library_id}','LibraryController@getLibraryBooks');
+Route::put('/borrow-book','LibraryController@borrowBook');
+Route::put('/return-book','LibraryController@returnBook');
 //Book  Routes
 
 Route::post('/create-book','BookController@create');

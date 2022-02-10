@@ -18,6 +18,8 @@ class CreateLibraryBooksTable extends Migration
             $table->timestamps();
             $table->integer('book_id');
             $table->integer('library_id');
+            $table->boolean('is_borrowed')->default(false);
+            $table->date('return_date')->nullable();
         });
     }
 
