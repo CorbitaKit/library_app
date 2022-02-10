@@ -77,3 +77,24 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 # library_app
+
+
+# Steps for running the project
+
+After cloning the project
+    -composer install
+    -npm install
+    -create .env file and copy the .env-example
+    -create database
+    -set .env database settings
+    -run php artisan key:generate
+    -run php artisan migrate
+    -run php artisan db:seed
+    -run npm run dev
+    -run php artisan serve
+    -go to your browser and enter the url localhost:8000
+
+    !!!! IMPORTANT NOTE !!!!
+    please see library-app/database/seeds/UserSeeder.php
+    in there I set the admin email and password you can change it if you want.
+    NOTE: please do this action before running php artisan db:seed
