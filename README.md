@@ -82,19 +82,20 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 # Steps for running the project
 
 After cloning the project
-    -composer install
-    -npm install
-    -create .env file and copy the .env-example
-    -create database
-    -set .env database settings
-    -run php artisan key:generate
-    -run php artisan migrate
-    -run php artisan db:seed
-    -run npm run dev
-    -run php artisan serve
-    -go to your browser and enter the url localhost:8000
 
-    !!!! IMPORTANT NOTE !!!!
-    please see library-app/database/seeds/UserSeeder.php
-    in there I set the admin email and password you can change it if you want.
-    NOTE: please do this action before running php artisan db:seed
+1. composer install
+2. npm install
+3. create .env file and copy the .env-example
+4. create database
+5. set .env database settings
+6. run php artisan key:generate
+7. run php artisan migrate
+8. run php artisan db:seed
+9. run npm run dev
+10. run php artisan serve
+11. go to your browser and enter the url localhost:8000
+
+!!!! IMPORTANT NOTE !!!!
+please see library-app/database/seeds/UserSeeder.php
+in there I set the admin email and password you can change it if you want.
+NOTE: please do this action before running php artisan db:seed
